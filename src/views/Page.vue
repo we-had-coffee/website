@@ -34,7 +34,7 @@ export default {
       axios.get(`https://api.github.com/repos/${process.env.VUE_APP_REPO_ORG}/${process.env.VUE_APP_REPO_NAME}/contents` + path)
       .then(res => {
         if(path.substring(path.length-3, path.length) === ".md")
-            this.readmeUrl = res.data.download_url
+          this.readmeUrl = res.data.download_url
       })
       .catch(err => {
         console.error(err)
