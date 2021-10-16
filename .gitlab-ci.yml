@@ -8,7 +8,7 @@ cache:
     - ./node_modules
     
 npm-build:
-  image: node:latest
+  image: node:14-alpine3.14
   stage: build-npm
   script:
     - npm install
