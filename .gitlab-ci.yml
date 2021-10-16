@@ -8,7 +8,7 @@ cache:
     - ./node_modules
     
 npm-build:
-  image: node:14-alpine3.14
+  image: node:latest
   stage: build-npm
   script:
     - npm install
@@ -16,8 +16,11 @@ npm-build:
     - npm run build
 
 docker-build:
-  image: docker:dind
+  image: docker:latest
   stage: build-docker
+  services:
+    - name: docker:dind
+      command: ["--insecure-registry=gitlab.vpn.hexa-gaming.fr:6000"]
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
