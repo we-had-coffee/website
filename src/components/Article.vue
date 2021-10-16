@@ -1,6 +1,6 @@
 <template>
-  <v-card>
-    <div v-html="markdownToHtml"></div>
+  <v-card flat>
+    <v-card-text v-html="markdownToHtml"></v-card-text>
   </v-card>
 </template>
 

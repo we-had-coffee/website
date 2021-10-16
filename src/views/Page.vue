@@ -1,7 +1,5 @@
 <template>
-  <v-container>
-    <Article v-if="readmeUrl !== null" :articleUrl="readmeUrl" />
-  </v-container>
+  <Article v-if="readmeUrl !== null" :articleUrl="readmeUrl" />
 </template>
 
 <script>

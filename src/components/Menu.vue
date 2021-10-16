@@ -1,9 +1,7 @@
 <template>
-    <v-navigation-drawer
+    <v-navigation
       v-if="subFolders.length > 0"
-      expand-on-hover
       floating
-      absolute
       fixed
     >
       <v-list nav
@@ -20,7 +18,7 @@
           <v-list-item-title>{{ subFolder.name }}</v-list-item-title>
         </v-list-item>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation>
 </template>
 
 <script>
