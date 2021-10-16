@@ -1,0 +1,30 @@
+stages:
+  - build-npm
+  - build-docker
+
+cache:
+  paths:
+    - ./dist
+    - ./node_modules
+    
+npm-build:
+  image: node:latest
+  stage: build-npm
+  script:
+    - npm install
+    - npm install -g @vue/cli
+    - npm run build
+
+docker-build:
+  image: docker:latest
+  stage: build-docker
+  services:
+    - name: docker:dind
+      command: ["--insecure-registry=$CI_REGISTRY"]
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+    - docker push "$CI_REGISTRY_IMAGE"
+  only:
+    - master
