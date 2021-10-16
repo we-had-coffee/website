@@ -16,7 +16,7 @@ npm-build:
     - npm run build
 
 docker-build:
-  image: docker:latest
+  image: docker:dind
   stage: build-docker
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
