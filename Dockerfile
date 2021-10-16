@@ -1,4 +1,7 @@
-FROM nginx:alpine
-ADD ./dist /usr/share/nginx/html
+FROM httpd:alpine
+ADD ./dist /usr/local/apache2/htdocs
 
-RUN sed -i 's/#gzip  on;/server_tokens  off;/g' /etc/nginx/nginx.conf
+#Remove Apache version in header
+RUN echo 'ServerTokens Prod' >> /usr/local/apache2/conf/httpd.conf
+RUN echo 'ServerSignature Off' >> /usr/local/apache2/conf/httpd.conf
+RUN echo 'TraceEnable off' >> /usr/local/apache2/conf/httpd.conf
